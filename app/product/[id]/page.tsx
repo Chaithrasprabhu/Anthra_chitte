@@ -6,9 +6,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 interface PageProps {
-    params: {
+    params: Promise<{
         id: string;
-    };
+    }>;
 }
 
 // Generate static params for all products (optional for pure dynamic, but good for performance)
@@ -20,7 +20,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps) {
-    const product = await getProductById(params.id);
+    const { id } = await params;
+    const product = await getProductById(id);
     if (!product) return { title: "Product Not Found" };
 
     return {
@@ -30,7 +31,8 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function ProductPage({ params }: PageProps) {
-    const product = await getProductById(params.id);
+    const { id } = await params;
+    const product = await getProductById(id);
 
     if (!product) {
         notFound();

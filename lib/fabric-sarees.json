@@ -1,0 +1,514 @@
+[
+    {
+        "id": "jaipur-1",
+        "name": "Jaipur Cotton Saree 1",
+        "fabric": "jaipuri cotton",
+        "price": 3200,
+        "image": "/assets/jaipuricottonsarees/WhatsApp Image 2026-03-04 at 1.05.46 PM.jpeg",
+        "description": "Elegant Jaipur cotton saree."
+    },
+    {
+        "id": "jaipur-2",
+        "name": "Jaipur Cotton Saree 2",
+        "fabric": "jaipuri cotton",
+        "price": 3500,
+        "image": "/assets/jaipuricottonsarees/WhatsApp Image 2026-03-04 at 1.05.52 PM.jpeg",
+        "description": "Traditional block print Jaipur cotton saree."
+    },
+    {
+        "id": "jaipur-3",
+        "name": "Jaipur Cotton Saree 3",
+        "fabric": "jaipuri cotton",
+        "price": 2800,
+        "image": "/assets/jaipuricottonsarees/WhatsApp Image 2026-03-04 at 1.06.20 PM.jpeg",
+        "description": "Lightweight pure cotton Jaipur saree."
+    },
+    {
+        "id": "jaipur-4",
+        "name": "Jaipur Cotton Saree 4",
+        "fabric": "jaipuri cotton",
+        "price": 3100,
+        "image": "/assets/jaipuricottonsarees/WhatsApp Image 2026-03-04 at 1.06.30 PM.jpeg",
+        "description": "Handcrafted Jaipur cotton saree."
+    },
+    {
+        "id": "jaipur-5",
+        "name": "Jaipur Cotton Saree 5",
+        "fabric": "jaipuri cotton",
+        "price": 3400,
+        "image": "/assets/jaipuricottonsarees/WhatsApp Image 2026-03-04 at 1.06.42 PM.jpeg",
+        "description": "Classic block print Jaipur cotton saree."
+    },
+    {
+        "id": "jaipur-6",
+        "name": "Jaipur Cotton Saree 6",
+        "fabric": "jaipuri cotton",
+        "price": 3000,
+        "image": "/assets/jaipuricottonsarees/WhatsApp Image 2026-03-04 at 1.07.06 PM.jpeg",
+        "description": "Soft pure cotton Jaipur saree."
+    },
+    {
+        "id": "jaipur-7",
+        "name": "Jaipur Cotton Saree 7",
+        "fabric": "jaipuri cotton",
+        "price": 3600,
+        "image": "/assets/jaipuricottonsarees/WhatsApp Image 2026-03-04 at 1.07.45 PM.jpeg",
+        "description": "Elegant Jaipur cotton saree."
+    },
+    {
+        "id": "jaipur-8",
+        "name": "Jaipur Cotton Saree 8",
+        "fabric": "jaipuri cotton",
+        "price": 3300,
+        "image": "/assets/jaipuricottonsarees/WhatsApp Image 2026-03-04 at 1.08.12 PM.jpeg",
+        "description": "Lightweight Jaipur cotton saree."
+    },
+    {
+        "id": "gangapattu-1",
+        "name": "Ganga Pattu Saree 1",
+        "fabric": "ganga pattu",
+        "price": 5500,
+        "image": "/assets/gangapattusarees/WhatsApp Image 2026-03-04 at 9.42.11 PM.jpeg",
+        "description": "Rich Ganga Pattu saree for special occasions."
+    },
+    {
+        "id": "gangapattu-2",
+        "name": "Ganga Pattu Saree 2",
+        "fabric": "ganga pattu",
+        "price": 6200,
+        "image": "/assets/gangapattusarees/WhatsApp Image 2026-03-04 at 9.42.12 PM (1).jpeg",
+        "description": "Vibrant and elegant Ganga Pattu Saree."
+    },
+    {
+        "id": "gangapattu-3",
+        "name": "Ganga Pattu Saree 3",
+        "fabric": "ganga pattu",
+        "price": 5800,
+        "image": "/assets/gangapattusarees/WhatsApp Image 2026-03-04 at 9.42.12 PM.jpeg",
+        "description": "Classic Ganga Pattu saree with detailed border."
+    },
+    {
+        "id": "gangapattu-4",
+        "name": "Ganga Pattu Saree 4",
+        "fabric": "ganga pattu",
+        "price": 6000,
+        "image": "/assets/gangapattusarees/WhatsApp Image 2026-03-04 at 9.42.13 PM.jpeg",
+        "description": "Elegant Ganga Pattu saree with rich weave."
+    },
+    {
+        "id": "gangapattu-5",
+        "name": "Ganga Pattu Saree 5",
+        "fabric": "ganga pattu",
+        "price": 6400,
+        "image": "/assets/gangapattusarees/WhatsApp Image 2026-03-04 at 9.42.14 PM (1).jpeg",
+        "description": "Premium Ganga Pattu saree."
+    },
+    {
+        "id": "gangapattu-6",
+        "name": "Ganga Pattu Saree 6",
+        "fabric": "ganga pattu",
+        "price": 5900,
+        "image": "/assets/gangapattusarees/WhatsApp Image 2026-03-04 at 9.42.14 PM.jpeg",
+        "description": "Traditional Ganga Pattu saree."
+    },
+    {
+        "id": "gangapattu-7",
+        "name": "Ganga Pattu Saree 7",
+        "fabric": "ganga pattu",
+        "price": 6100,
+        "image": "/assets/gangapattusarees/WhatsApp Image 2026-03-04 at 9.42.15 PM.jpeg",
+        "description": "Elegant Ganga Pattu saree."
+    },
+    {
+        "id": "dailywear-1",
+        "name": "Daily Wear Saree 1",
+        "fabric": "dailywear",
+        "price": 1200,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.34 PM (1).jpeg",
+        "description": "Comfortable saree for daily wear."
+    },
+    {
+        "id": "dailywear-2",
+        "name": "Daily Wear Saree 2",
+        "fabric": "dailywear",
+        "price": 1350,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.34 PM (2).jpeg",
+        "description": "Easy to drape daily wear cotton saree."
+    },
+    {
+        "id": "dailywear-3",
+        "name": "Daily Wear Saree 3",
+        "fabric": "dailywear",
+        "price": 1500,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.34 PM.jpeg",
+        "description": "Light daily wear saree."
+    },
+    {
+        "id": "dailywear-4",
+        "name": "Daily Wear Saree 4",
+        "fabric": "dailywear",
+        "price": 1650,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.35 PM (1).jpeg",
+        "description": "Comfortable saree for daily wear."
+    },
+    {
+        "id": "dailywear-5",
+        "name": "Daily Wear Saree 5",
+        "fabric": "dailywear",
+        "price": 1200,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.35 PM (2).jpeg",
+        "description": "Easy to drape daily wear cotton saree."
+    },
+    {
+        "id": "dailywear-6",
+        "name": "Daily Wear Saree 6",
+        "fabric": "dailywear",
+        "price": 1350,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.35 PM (3).jpeg",
+        "description": "Light daily wear saree."
+    },
+    {
+        "id": "dailywear-7",
+        "name": "Daily Wear Saree 7",
+        "fabric": "dailywear",
+        "price": 1500,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.35 PM.jpeg",
+        "description": "Comfortable saree for daily wear."
+    },
+    {
+        "id": "dailywear-8",
+        "name": "Daily Wear Saree 8",
+        "fabric": "dailywear",
+        "price": 1650,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.36 PM (1).jpeg",
+        "description": "Easy to drape daily wear cotton saree."
+    },
+    {
+        "id": "dailywear-9",
+        "name": "Daily Wear Saree 9",
+        "fabric": "dailywear",
+        "price": 1200,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.36 PM (2).jpeg",
+        "description": "Light daily wear saree."
+    },
+    {
+        "id": "dailywear-10",
+        "name": "Daily Wear Saree 10",
+        "fabric": "dailywear",
+        "price": 1350,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.36 PM (3).jpeg",
+        "description": "Comfortable saree for daily wear."
+    },
+    {
+        "id": "dailywear-11",
+        "name": "Daily Wear Saree 11",
+        "fabric": "dailywear",
+        "price": 1500,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.36 PM.jpeg",
+        "description": "Easy to drape daily wear cotton saree."
+    },
+    {
+        "id": "dailywear-12",
+        "name": "Daily Wear Saree 12",
+        "fabric": "dailywear",
+        "price": 1650,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.37 PM (1).jpeg",
+        "description": "Light daily wear saree."
+    },
+    {
+        "id": "dailywear-13",
+        "name": "Daily Wear Saree 13",
+        "fabric": "dailywear",
+        "price": 1200,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.37 PM (2).jpeg",
+        "description": "Comfortable saree for daily wear."
+    },
+    {
+        "id": "dailywear-14",
+        "name": "Daily Wear Saree 14",
+        "fabric": "dailywear",
+        "price": 1350,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.37 PM (3).jpeg",
+        "description": "Easy to drape daily wear cotton saree."
+    },
+    {
+        "id": "dailywear-15",
+        "name": "Daily Wear Saree 15",
+        "fabric": "dailywear",
+        "price": 1500,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.37 PM.jpeg",
+        "description": "Light daily wear saree."
+    },
+    {
+        "id": "dailywear-16",
+        "name": "Daily Wear Saree 16",
+        "fabric": "dailywear",
+        "price": 1650,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.38 PM (1).jpeg",
+        "description": "Comfortable saree for daily wear."
+    },
+    {
+        "id": "dailywear-17",
+        "name": "Daily Wear Saree 17",
+        "fabric": "dailywear",
+        "price": 1200,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.38 PM (2).jpeg",
+        "description": "Easy to drape daily wear cotton saree."
+    },
+    {
+        "id": "dailywear-18",
+        "name": "Daily Wear Saree 18",
+        "fabric": "dailywear",
+        "price": 1350,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.38 PM (3).jpeg",
+        "description": "Light daily wear saree."
+    },
+    {
+        "id": "dailywear-19",
+        "name": "Daily Wear Saree 19",
+        "fabric": "dailywear",
+        "price": 1500,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.38 PM.jpeg",
+        "description": "Comfortable saree for daily wear."
+    },
+    {
+        "id": "dailywear-20",
+        "name": "Daily Wear Saree 20",
+        "fabric": "dailywear",
+        "price": 1650,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.39 PM (1).jpeg",
+        "description": "Easy to drape daily wear cotton saree."
+    },
+    {
+        "id": "dailywear-21",
+        "name": "Daily Wear Saree 21",
+        "fabric": "dailywear",
+        "price": 1200,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.39 PM (2).jpeg",
+        "description": "Light daily wear saree."
+    },
+    {
+        "id": "dailywear-22",
+        "name": "Daily Wear Saree 22",
+        "fabric": "dailywear",
+        "price": 1350,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.39 PM (3).jpeg",
+        "description": "Comfortable saree for daily wear."
+    },
+    {
+        "id": "dailywear-23",
+        "name": "Daily Wear Saree 23",
+        "fabric": "dailywear",
+        "price": 1500,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.39 PM.jpeg",
+        "description": "Easy to drape daily wear cotton saree."
+    },
+    {
+        "id": "dailywear-24",
+        "name": "Daily Wear Saree 24",
+        "fabric": "dailywear",
+        "price": 1650,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.40 PM (1).jpeg",
+        "description": "Light daily wear saree."
+    },
+    {
+        "id": "dailywear-25",
+        "name": "Daily Wear Saree 25",
+        "fabric": "dailywear",
+        "price": 1200,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.40 PM (2).jpeg",
+        "description": "Comfortable saree for daily wear."
+    },
+    {
+        "id": "dailywear-26",
+        "name": "Daily Wear Saree 26",
+        "fabric": "dailywear",
+        "price": 1350,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.40 PM (3).jpeg",
+        "description": "Easy to drape daily wear cotton saree."
+    },
+    {
+        "id": "dailywear-27",
+        "name": "Daily Wear Saree 27",
+        "fabric": "dailywear",
+        "price": 1500,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.40 PM.jpeg",
+        "description": "Light daily wear saree."
+    },
+    {
+        "id": "dailywear-28",
+        "name": "Daily Wear Saree 28",
+        "fabric": "dailywear",
+        "price": 1650,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.41 PM (1).jpeg",
+        "description": "Comfortable saree for daily wear."
+    },
+    {
+        "id": "dailywear-29",
+        "name": "Daily Wear Saree 29",
+        "fabric": "dailywear",
+        "price": 1200,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.41 PM (2).jpeg",
+        "description": "Easy to drape daily wear cotton saree."
+    },
+    {
+        "id": "dailywear-30",
+        "name": "Daily Wear Saree 30",
+        "fabric": "dailywear",
+        "price": 1350,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.41 PM (3).jpeg",
+        "description": "Light daily wear saree."
+    },
+    {
+        "id": "dailywear-31",
+        "name": "Daily Wear Saree 31",
+        "fabric": "dailywear",
+        "price": 1500,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.41 PM (4).jpeg",
+        "description": "Comfortable saree for daily wear."
+    },
+    {
+        "id": "dailywear-32",
+        "name": "Daily Wear Saree 32",
+        "fabric": "dailywear",
+        "price": 1650,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.41 PM.jpeg",
+        "description": "Easy to drape daily wear cotton saree."
+    },
+    {
+        "id": "dailywear-33",
+        "name": "Daily Wear Saree 33",
+        "fabric": "dailywear",
+        "price": 1200,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.42 PM (1).jpeg",
+        "description": "Light daily wear saree."
+    },
+    {
+        "id": "dailywear-34",
+        "name": "Daily Wear Saree 34",
+        "fabric": "dailywear",
+        "price": 1350,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.42 PM (2).jpeg",
+        "description": "Comfortable saree for daily wear."
+    },
+    {
+        "id": "dailywear-35",
+        "name": "Daily Wear Saree 35",
+        "fabric": "dailywear",
+        "price": 1500,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.42 PM (3).jpeg",
+        "description": "Easy to drape daily wear cotton saree."
+    },
+    {
+        "id": "dailywear-36",
+        "name": "Daily Wear Saree 36",
+        "fabric": "dailywear",
+        "price": 1650,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.42 PM.jpeg",
+        "description": "Light daily wear saree."
+    },
+    {
+        "id": "dailywear-37",
+        "name": "Daily Wear Saree 37",
+        "fabric": "dailywear",
+        "price": 1200,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.43 PM (1).jpeg",
+        "description": "Comfortable saree for daily wear."
+    },
+    {
+        "id": "dailywear-38",
+        "name": "Daily Wear Saree 38",
+        "fabric": "dailywear",
+        "price": 1350,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.43 PM (2).jpeg",
+        "description": "Easy to drape daily wear cotton saree."
+    },
+    {
+        "id": "dailywear-39",
+        "name": "Daily Wear Saree 39",
+        "fabric": "dailywear",
+        "price": 1500,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.43 PM (3).jpeg",
+        "description": "Light daily wear saree."
+    },
+    {
+        "id": "dailywear-40",
+        "name": "Daily Wear Saree 40",
+        "fabric": "dailywear",
+        "price": 1650,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.43 PM.jpeg",
+        "description": "Comfortable saree for daily wear."
+    },
+    {
+        "id": "dailywear-41",
+        "name": "Daily Wear Saree 41",
+        "fabric": "dailywear",
+        "price": 1200,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.44 PM (1).jpeg",
+        "description": "Easy to drape daily wear cotton saree."
+    },
+    {
+        "id": "dailywear-42",
+        "name": "Daily Wear Saree 42",
+        "fabric": "dailywear",
+        "price": 1350,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.44 PM (2).jpeg",
+        "description": "Light daily wear saree."
+    },
+    {
+        "id": "dailywear-43",
+        "name": "Daily Wear Saree 43",
+        "fabric": "dailywear",
+        "price": 1500,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.44 PM (3).jpeg",
+        "description": "Comfortable saree for daily wear."
+    },
+    {
+        "id": "dailywear-44",
+        "name": "Daily Wear Saree 44",
+        "fabric": "dailywear",
+        "price": 1650,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.44 PM.jpeg",
+        "description": "Easy to drape daily wear cotton saree."
+    },
+    {
+        "id": "dailywear-45",
+        "name": "Daily Wear Saree 45",
+        "fabric": "dailywear",
+        "price": 1200,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.45 PM (1).jpeg",
+        "description": "Light daily wear saree."
+    },
+    {
+        "id": "dailywear-46",
+        "name": "Daily Wear Saree 46",
+        "fabric": "dailywear",
+        "price": 1350,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.45 PM (2).jpeg",
+        "description": "Comfortable saree for daily wear."
+    },
+    {
+        "id": "dailywear-47",
+        "name": "Daily Wear Saree 47",
+        "fabric": "dailywear",
+        "price": 1500,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.45 PM (3).jpeg",
+        "description": "Easy to drape daily wear cotton saree."
+    },
+    {
+        "id": "dailywear-48",
+        "name": "Daily Wear Saree 48",
+        "fabric": "dailywear",
+        "price": 1650,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.45 PM.jpeg",
+        "description": "Light daily wear saree."
+    },
+    {
+        "id": "dailywear-49",
+        "name": "Daily Wear Saree 49",
+        "fabric": "dailywear",
+        "price": 1200,
+        "image": "/assets/dailywear/WhatsApp Image 2026-03-02 at 12.29.46 PM.jpeg",
+        "description": "Comfortable saree for daily wear."
+    }
+]

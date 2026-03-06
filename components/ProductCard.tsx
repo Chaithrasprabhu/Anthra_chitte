@@ -13,7 +13,8 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product }: ProductCardProps) {
-    const { addItem } = useCartStore();
+    const { addItem, addFavorite, removeFavorite, isFavorite } = useCartStore();
+    const liked = isFavorite(product.id);
 
     return (
         <div className="group relative flex flex-col space-y-3">
@@ -53,9 +54,17 @@ export function ProductCard({ product }: ProductCardProps) {
 
                 {/* Wishlist Button */}
                 <Button
-                    variant="ghost"
+                    variant={liked ? "secondary" : "ghost"}
                     size="icon"
                     className="absolute right-2 top-2 rounded-full bg-white/80 backdrop-blur-sm text-gray-600 hover:text-red-500 hover:bg-white transition-colors opacity-0 group-hover:opacity-100 duration-300"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        if (liked) {
+                            removeFavorite(product.id);
+                        } else {
+                            addFavorite(product);
+                        }
+                    }}
                 >
                     <Heart className="w-5 h-5" />
                     <span className="sr-only">Add to Wishlist</span>

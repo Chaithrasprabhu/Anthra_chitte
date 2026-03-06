@@ -77,6 +77,16 @@ export function CartSheet() {
                                             {item.size && (
                                                 <p className="text-xs text-muted-foreground">Size: {item.size}</p>
                                             )}
+                                            {item.config && (
+                                                <div className="text-xs text-muted-foreground space-y-0.5">
+                                                    <p>Type: {item.config.sareeType}</p>
+                                                    {item.config.pockets && <p>Pockets: {item.config.pockets}</p>}
+                                                    {item.config.palluType && <p>Pallu: {item.config.palluType}</p>}
+                                                    {item.config.palluType === 'pleated' && item.config.palluLength && item.config.palluWidth && (
+                                                        <p>Pallu Size: {item.config.palluLength} x {item.config.palluWidth} inch</p>
+                                                    )}
+                                                </div>
+                                            )}
                                             <div className="flex items-center justify-between mt-2">
                                                 <div className="flex items-center space-x-2 border rounded-md">
                                                     <Button

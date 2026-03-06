@@ -16,10 +16,12 @@ import {
 import { cn } from "@/lib/utils";
 
 const links = [
-    { name: "Maternity", href: "/category/maternity" },
-    { name: "Infants", href: "/category/infants" },
-    { name: "Sarees", href: "/category/sarees" },
-    { name: "Accessories", href: "/category/accessories" },
+    { name: "Shop Best Sellers", href: "/category/best-sellers" },
+    { name: "New Launches", href: "/category/new-launches" },
+    { name: "Shop by Occasions", href: "/category/occasions" },
+    { name: "Shop Sarees by Fabric", href: "/category/sarees-by-fabric" },
+    { name: "Shop Sarees by Colour", href: "/category/sarees-by-colour" },
+    { name: "Favorites", href: "/category/favorites" },
 ];
 
 export function Navbar() {
