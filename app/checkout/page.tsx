@@ -123,7 +123,7 @@ export default function CheckoutPage() {
   };
   const orderSummary = items.map(formatItemDetails).join("\n\n");
   const total = totalPrice();
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "918747017276";
+  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "918660806939";
 
   const platformFeeAmount = platformFee();
   const buildWhatsAppUrl = (addr: AddressForm) => {
