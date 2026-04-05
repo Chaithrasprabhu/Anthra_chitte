@@ -4,6 +4,8 @@ interface PriceDisplayProps {
   price: number;
   quantity?: number;
   discountPercent?: number;
+  /** Explicit MRP / list price (e.g. ₹1799 when sale price is ₹1299). Takes precedence over deriving from `discountPercent`. */
+  mrp?: number;
   /** Compact: single line. Default: vertical stack */
   variant?: "default" | "compact" | "inline";
   className?: string;
@@ -13,11 +15,19 @@ export function PriceDisplay({
   price,
   quantity = 1,
   discountPercent,
+  mrp,
   variant = "default",
   className = "",
 }: PriceDisplayProps) {
-  const hasDiscount = discountPercent !== undefined && discountPercent > 0;
-  const originalPrice = hasDiscount ? Math.round(price / (1 - discountPercent / 100)) : price;
+  const hasMrp = mrp !== undefined && mrp > price;
+  const hasPercentDiscount =
+    !hasMrp && discountPercent !== undefined && discountPercent > 0;
+  const originalPrice = hasMrp
+    ? mrp
+    : hasPercentDiscount
+      ? Math.round(price / (1 - discountPercent / 100))
+      : price;
+  const hasDiscount = hasMrp || hasPercentDiscount;
   const displayPrice = price * quantity;
   const displayOriginal = originalPrice * quantity;
 

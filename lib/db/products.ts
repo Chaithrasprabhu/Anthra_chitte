@@ -14,6 +14,8 @@ export interface DbProduct {
   rating?: number;
   reviewCount?: number;
   discountPercent?: number;
+  mrp?: number;
+  images?: string[];
   source: "fabric" | "catalog" | "handmade";
 }
 
@@ -61,6 +63,8 @@ export async function getProductsFromDB(filters?: {
       rating: fromRatings.reviewCount > 0 ? fromRatings.rating : (p.rating ?? 4.5),
       reviewCount: fromRatings.reviewCount > 0 ? fromRatings.reviewCount : (p.reviewCount ?? 0),
       discountPercent: p.discountPercent,
+      mrp: p.mrp,
+      images: p.images,
       source: p.source,
     });
   }
@@ -85,6 +89,8 @@ export async function getProductByIdFromDB(id: string): Promise<DbProduct | null
     rating: fromRatings.reviewCount > 0 ? fromRatings.rating : (product.rating ?? 4.5),
     reviewCount: fromRatings.reviewCount > 0 ? fromRatings.reviewCount : (product.reviewCount ?? 0),
     discountPercent: product.discountPercent,
+    mrp: product.mrp,
+    images: product.images,
     source: product.source,
   };
 }

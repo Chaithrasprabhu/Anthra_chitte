@@ -14,6 +14,12 @@ interface FabricProductDetailsProps {
   product: ProductWithFabric;
 }
 
+function fabricDisplayName(fabric: string): string {
+  if (fabric === "dailywear") return "Linen Digital Prints";
+  if (fabric === "mysore crepe") return "Mysore crape";
+  return fabric;
+}
+
 const sizes = ["XS", "S", "M", "L", "XL"];
 const skirtLengths = [
   { value: "free" as const, label: "Free Size" },
@@ -110,6 +116,11 @@ export function FabricProductDetails({ product }: FabricProductDetailsProps) {
     </Button>
   );
 
+  const offPercent =
+    product.mrp != null && product.mrp > product.price
+      ? Math.round(((product.mrp - product.price) / product.mrp) * 100)
+      : product.discountPercent;
+
   const circularBtn = (value: string, label: string, selected: boolean, onClick: () => void) => (
     <Button
       key={value}
@@ -129,7 +140,7 @@ export function FabricProductDetails({ product }: FabricProductDetailsProps) {
     <div className="flex flex-col space-y-6">
       <div className="space-y-2">
         <h1 className="text-3xl font-bold font-serif text-primary">
-          {product.fabric === "dailywear" ? "Linen Digital Prints" : product.fabric} Saree
+          {product.fabric ? `${fabricDisplayName(product.fabric)} Saree` : "Saree"}
         </h1>
         <ProductRatingBlock
           productId={product.id}
@@ -138,14 +149,21 @@ export function FabricProductDetails({ product }: FabricProductDetailsProps) {
           size="lg"
         />
         <div className="flex items-center gap-2 flex-wrap">
-          <PriceDisplay price={product.price} discountPercent={product.discountPercent} className="text-xl [&_p:last-child]:text-primary [&_span:last-child]:text-primary" />
-          {product.discountPercent != null && product.discountPercent > 0 && (
+          <PriceDisplay
+            price={product.price}
+            discountPercent={product.discountPercent}
+            mrp={product.mrp}
+            className="text-xl [&_p:last-child]:text-primary [&_span:last-child]:text-primary"
+          />
+          {offPercent != null && offPercent > 0 && (
             <span className="text-xs font-semibold bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400 px-2 py-0.5 rounded">
-              {product.discountPercent}% OFF
+              {offPercent}% OFF
             </span>
           )}
         </div>
-        {product.fabric && product.fabric !== "dailywear" && (
+        {product.fabric &&
+          product.fabric !== "dailywear" &&
+          product.fabric !== "mysore crepe" && (
           <p className="text-sm text-muted-foreground">
             Fabric: {product.fabric}
           </p>

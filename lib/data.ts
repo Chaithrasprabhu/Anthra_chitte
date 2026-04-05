@@ -11,6 +11,10 @@ export interface Product {
   rating?: number;
   reviewCount?: number;
   discountPercent?: number;
+  /** Maximum retail price (strikethrough) when the sale price is `price`. */
+  mrp?: number;
+  /** Extra gallery images (e.g. Mysore crepe carousel); primary thumbnail remains `image`. */
+  images?: string[];
 }
 
 export async function getProducts(): Promise<Product[]> {

@@ -6,11 +6,19 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { JsonLd } from "@/components/JsonLd";
 import { Sparkles, Shirt, Gift, ShoppingBag } from "lucide-react";
-import { absoluteUrl, defaultDescription, getSiteUrl, SITE_NAME } from "@/lib/seo";
+import { absoluteUrl, defaultDescription, extendedSiteKeywords, getSiteUrl, SITE_NAME } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: { absolute: `${SITE_NAME} | Handcrafted Traditional Wear & Sarees Online` },
   description: defaultDescription,
+  keywords: [
+    "sarees online India",
+    "handcrafted sarees",
+    "potli bags online",
+    "ethnic wear India",
+    SITE_NAME,
+    ...extendedSiteKeywords,
+  ],
   alternates: { canonical: "/" },
   openGraph: {
     title: `${SITE_NAME} | Handcrafted Traditional Wear & Sarees Online`,

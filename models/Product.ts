@@ -13,6 +13,8 @@ export interface IProduct {
   rating?: number;
   reviewCount?: number;
   discountPercent?: number;
+  mrp?: number;
+  images?: string[];
   source: "fabric" | "catalog";
   createdAt: Date;
 }
@@ -30,6 +32,8 @@ const ProductSchema = new Schema<IProduct>(
     rating: { type: Number },
     reviewCount: { type: Number },
     discountPercent: { type: Number },
+    mrp: { type: Number },
+    images: { type: [String], default: undefined },
     source: { type: String, enum: ["fabric", "catalog", "handmade"], required: true },
     createdAt: { type: Date, default: Date.now },
   },

@@ -19,6 +19,8 @@ export async function getProductById(id: string): Promise<ProductWithFabric | un
     rating: product.rating,
     reviewCount: product.reviewCount,
     discountPercent: product.discountPercent,
+    mrp: product.mrp,
+    images: product.images,
   };
 }
 

@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Playfair_Display, Inter } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
-import { defaultDescription, getSiteUrl } from '@/lib/seo';
+import { defaultDescription, extendedSiteKeywords, getSiteUrl } from '@/lib/seo';
 
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-serif' });
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     'sarees with pockets',
     'Anthra Chitte',
     'Indian ethnic wear',
+    ...extendedSiteKeywords,
   ],
   category: 'shopping',
   icons: [
@@ -46,7 +47,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Anthra Chitte | Handcrafted Traditional Wear',
-    description: 'Elegant, warm, traditional yet clean fashion. Shop Flexifit, Maternity wear, Sarees with pockets.',
+    description: defaultDescription,
+    images: ['/logo.png'],
   },
   robots: {
     index: true,
@@ -67,7 +69,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <body className={cn('min-h-screen bg-background font-sans antialiased text-foreground', playfair.variable, inter.variable)}>
         {children}
       </body>

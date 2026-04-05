@@ -32,6 +32,8 @@ async function seed() {
       rating: { type: Number },
       reviewCount: { type: Number },
       discountPercent: { type: Number },
+      mrp: { type: Number },
+      images: [{ type: String }],
       source: { type: String, enum: ["fabric", "catalog", "handmade"], required: true },
     },
     { timestamps: true }
@@ -56,6 +58,8 @@ async function seed() {
     rating: p.rating,
     reviewCount: p.reviewCount,
     discountPercent: p.discountPercent,
+    mrp: p.mrp,
+    images: p.images,
     source: "fabric",
   }));
   await Product.insertMany(fabricProducts);

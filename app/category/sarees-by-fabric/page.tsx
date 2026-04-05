@@ -14,6 +14,7 @@ import { useCartStore } from "@/store/useCartStore";
 
 const categories = [
   { id: "dailywear", label: "Linen Digital Prints" },
+  { id: "mysore crepe", label: "Mysore crape" },
   { id: "ganga pattu", label: "Ganga Pattu" },
 ];
 
@@ -28,7 +29,15 @@ type FabricItem = {
   rating?: number;
   reviewCount?: number;
   discountPercent?: number;
+  mrp?: number;
 };
+
+function discountOffPercent(p: FabricItem): number | undefined {
+  if (p.mrp != null && p.mrp > p.price) {
+    return Math.round(((p.mrp - p.price) / p.mrp) * 100);
+  }
+  return p.discountPercent;
+}
 
 export default function SareesByFabricPage() {
   const [selectedFabric, setSelectedFabric] = useState("dailywear");
@@ -98,7 +107,9 @@ export default function SareesByFabricPage() {
           </div>
         ) : filteredSarees.length > 0 ? (
           <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-            {filteredSarees.map((product) => (
+            {filteredSarees.map((product) => {
+              const off = discountOffPercent(product);
+              return (
               <div
                 key={product.id}
                 className="group relative border rounded-lg overflow-hidden bg-card hover:shadow-lg transition-all duration-300"
@@ -113,15 +124,15 @@ export default function SareesByFabricPage() {
                         NEW
                       </span>
                     )}
-                    {product.discountPercent != null && product.discountPercent > 0 && (
+                    {off != null && off > 0 && (
                       <span className="rounded-md bg-emerald-600 px-2 py-0.5 text-xs font-semibold text-white shadow">
-                        {product.discountPercent}% OFF
+                        {off}% OFF
                       </span>
                     )}
                   </div>
                   <Image
                     src={product.image}
-                    alt="Saree"
+                    alt={product.name}
                     fill
                     className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
@@ -164,14 +175,20 @@ export default function SareesByFabricPage() {
                     {product.description}
                   </p>
                   <div className="mt-2 flex items-center justify-between gap-2">
-                    <PriceDisplay price={product.price} discountPercent={product.discountPercent} variant="default" />
+                    <PriceDisplay
+                      price={product.price}
+                      discountPercent={product.discountPercent}
+                      mrp={product.mrp}
+                      variant="default"
+                    />
                     <Button size="sm" variant="secondary" className="font-medium" asChild>
                       <Link href={`/product/${product.id}`}>Add to Cart</Link>
                     </Button>
                   </div>
                 </div>
               </div>
-            ))}
+            );
+            })}
           </div>
         ) : (
           <div className="text-center py-20 bg-muted/30 rounded-lg border border-dashed">

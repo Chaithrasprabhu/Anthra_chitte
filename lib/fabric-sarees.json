@@ -543,6 +543,72 @@
         "discountPercent": 45
     },
     {
+        "id": "mysorecrepe-1",
+        "name": "Royal Blue Mysore Crepe Saree with Gold Zari Border",
+        "fabric": "mysore crepe",
+        "price": 1299,
+        "mrp": 1799,
+        "image": "/assets/mysorecrepe/mysore-royal-blue-gold-border.png",
+        "images": [
+            "/assets/mysorecrepe/mysore-royal-blue-gold-border.png",
+            "/assets/mysorecrepe/mysore-collection-five-colors.png",
+            "/assets/mysorecrepe/mysore-stack-three-colors.png"
+        ],
+        "description": "Royal blue Mysore crepe with a wide gold zari border—traditional floral buttis and a soft, elegant drape. The same lotus zari border is available in emerald, magenta, turquoise, black, and more jewel tones.",
+        "isNew": true,
+        "rating": 4.6,
+        "reviewCount": 18
+    },
+    {
+        "id": "mysorecrepe-2",
+        "name": "Mysore Crepe Saree with Gold Zari Border — Design 2",
+        "fabric": "mysore crepe",
+        "price": 1299,
+        "mrp": 1799,
+        "image": "/assets/mysorecrepe/mysorecrepe-2-view-1.jpeg",
+        "images": [
+            "/assets/mysorecrepe/mysorecrepe-2-view-1.jpeg",
+            "/assets/mysorecrepe/mysorecrepe-2-view-2.jpeg"
+        ],
+        "description": "Mysore crepe with a wide gold zari border and elegant drape—lightweight silk feel, ideal for festive occasions and celebrations.",
+        "isNew": true,
+        "rating": 4.5,
+        "reviewCount": 12
+    },
+    {
+        "id": "mysorecrepe-3",
+        "name": "Mysore Crepe Saree with Gold Zari Border — Design 3",
+        "fabric": "mysore crepe",
+        "price": 1099,
+        "mrp": 1599,
+        "image": "/assets/mysorecrepe/mysorecrepe-3-view-1.jpeg",
+        "images": [
+            "/assets/mysorecrepe/mysorecrepe-3-view-1.jpeg",
+            "/assets/mysorecrepe/mysorecrepe-3-view-2.jpeg"
+        ],
+        "description": "Mysore crepe saree with traditional gold zari detailing—soft sheen, easy drape, and a refined finish for everyday elegance or small gatherings.",
+        "isNew": true,
+        "rating": 4.5,
+        "reviewCount": 10
+    },
+    {
+        "id": "mysorecrepe-4",
+        "name": "Mysore Crepe Saree with Gold Zari Border — Design 4",
+        "fabric": "mysore crepe",
+        "price": 1799,
+        "mrp": 2599,
+        "image": "/assets/mysorecrepe/mysorecrepe-4-view-1.jpeg",
+        "images": [
+            "/assets/mysorecrepe/mysorecrepe-4-view-1.jpeg",
+            "/assets/mysorecrepe/mysorecrepe-4-view-2.jpeg",
+            "/assets/mysorecrepe/mysorecrepe-4-view-3.jpeg"
+        ],
+        "description": "Premium Mysore crepe with an ornate gold zari border and rich drape—crafted for weddings, receptions, and statement festive looks.",
+        "isNew": true,
+        "rating": 4.6,
+        "reviewCount": 14
+    },
+    {
         "id": "gangapattu-1",
         "name": "Ganga Pattu Saree - Design 1",
         "fabric": "ganga pattu",

@@ -6,9 +6,18 @@ import { HandmadeProductDetails } from "@/components/HandmadeProductDetails";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
+import { ProductImageCarousel } from "@/components/ProductImageCarousel";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getSiteUrl, SITE_NAME } from "@/lib/seo";
+import {
+    buildBreadcrumbJsonLd,
+    productBreadcrumbTrail,
+    productSeoKeywords,
+    truncateMetaDescription,
+    type ProductCategory,
+    getSiteUrl,
+    SITE_NAME,
+} from "@/lib/seo";
 
 /** Fresh product data (including ratings) on each request */
 export const dynamic = "force-dynamic";
@@ -34,24 +43,36 @@ export async function generateMetadata({ params }: PageProps) {
     if (!product) return { title: "Product Not Found" };
 
     const displayName = isFabricProduct(product) ? product.name || "Saree" : product.name;
-    const imageUrl = absoluteImageUrl(product.image);
+    const gallery =
+        product.images && product.images.length > 0 ? product.images : [product.image];
+    const ogImages = gallery.slice(0, 4).map((src) => ({
+        url: absoluteImageUrl(src),
+        width: 800,
+        height: 1000,
+        alt: displayName,
+    }));
     const pageUrl = `${baseUrl.replace(/\/$/, "")}/product/${id}`;
+    const metaDesc = truncateMetaDescription(product.description);
+    const category = product.category as ProductCategory;
     return {
         title: `${displayName} | ${SITE_NAME}`,
-        description: product.description.slice(0, 160),
+        description: metaDesc,
+        keywords: productSeoKeywords(category),
         alternates: { canonical: `/product/${id}` },
         openGraph: {
             title: displayName,
-            description: product.description.slice(0, 160),
+            description: metaDesc,
             url: pageUrl,
-            images: [{ url: imageUrl, width: 800, height: 1000, alt: displayName }],
+            siteName: SITE_NAME,
+            images: ogImages,
             type: "website",
             locale: "en_IN",
         },
         twitter: {
             card: "summary_large_image",
             title: displayName,
-            description: product.description.slice(0, 160),
+            description: metaDesc,
+            images: gallery.slice(0, 4).map((src) => absoluteImageUrl(src)),
         },
         robots: { index: true, follow: true },
     };
@@ -63,45 +84,74 @@ export default async function ProductPage({ params }: PageProps) {
 
     if (!product) notFound();
 
-    const imageUrl = absoluteImageUrl(product.image);
+    const gallery =
+        product.images && product.images.length > 0 ? product.images : [product.image];
+    const imageUrlsForLd = gallery.map((src) => absoluteImageUrl(src));
     const displayName = isFabricProduct(product) ? product.name || "Saree" : product.name;
-    const jsonLd = {
+    const pageUrl = `${baseUrl.replace(/\/$/, "")}/product/${id}`;
+    const priceValidUntil = new Date();
+    priceValidUntil.setFullYear(priceValidUntil.getFullYear() + 1);
+
+    const offers: Record<string, unknown> = {
+        "@type": "Offer",
+        price: product.price,
+        priceCurrency: "INR",
+        availability: "https://schema.org/InStock",
+        url: pageUrl,
+        priceValidUntil: priceValidUntil.toISOString().slice(0, 10),
+    };
+
+    const jsonLd: Record<string, unknown> = {
         "@context": "https://schema.org",
         "@type": "Product",
         name: displayName,
         description: product.description,
-        image: imageUrl,
+        image: imageUrlsForLd.length === 1 ? imageUrlsForLd[0] : imageUrlsForLd,
         sku: product.id,
         brand: {
             "@type": "Brand",
             name: SITE_NAME,
         },
-        offers: {
-            "@type": "Offer",
-            price: product.price,
-            priceCurrency: "INR",
-            availability: "https://schema.org/InStock",
-            url: `${baseUrl.replace(/\/$/, "")}/product/${id}`,
-        },
+        offers,
     };
+
+    if (product.rating != null && product.reviewCount != null && product.reviewCount > 0) {
+        jsonLd.aggregateRating = {
+            "@type": "AggregateRating",
+            ratingValue: product.rating,
+            reviewCount: product.reviewCount,
+            bestRating: 5,
+            worstRating: 1,
+        };
+    }
+
+    const breadcrumbLd = buildBreadcrumbJsonLd(
+        productBreadcrumbTrail(product.category as ProductCategory, id, displayName),
+    );
 
     return (
         <div className="min-h-screen bg-background flex flex-col">
+            <JsonLd data={breadcrumbLd} />
             <JsonLd data={jsonLd} />
             <Navbar />
 
             <main className="flex-1 container mx-auto px-4 py-10 sm:px-6 lg:px-8" role="main">
                 <div className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
-                    {/* Product Image */}
-                    <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg bg-gray-100 lg:aspect-[3/4]">
-                        <Image
-                            src={product.image}
-                            alt={displayName}
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                    </div>
+                    {/* Product image(s) — carousel when multiple gallery images */}
+                    {gallery.length > 1 ? (
+                        <ProductImageCarousel images={gallery} alt={displayName} />
+                    ) : (
+                        <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg bg-gray-100 lg:aspect-[3/4]">
+                            <Image
+                                src={product.image}
+                                alt={displayName}
+                                fill
+                                className="object-cover"
+                                priority
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                            />
+                        </div>
+                    )}
 
                     {/* Product Info */}
                     <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
