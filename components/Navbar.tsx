@@ -19,6 +19,7 @@ import {
 const links = [
     { name: "New Arrivals", href: "/category/new-arrivals" },
     { name: "Shop Sarees by Fabric", href: "/category/sarees-by-fabric" },
+    { name: "Handmade Essentials", href: "/category/handmade-essentials" },
     { name: "Blouses", href: "/category/blouses" },
 ];
 

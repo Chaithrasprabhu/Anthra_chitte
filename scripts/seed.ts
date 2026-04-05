@@ -32,7 +32,7 @@ async function seed() {
       rating: { type: Number },
       reviewCount: { type: Number },
       discountPercent: { type: Number },
-      source: { type: String, enum: ["fabric", "catalog"], required: true },
+      source: { type: String, enum: ["fabric", "catalog", "handmade"], required: true },
     },
     { timestamps: true }
   );
@@ -70,6 +70,24 @@ async function seed() {
   ];
   await Product.insertMany(catalogProducts);
   console.log(`Seeded ${catalogProducts.length} catalog products`);
+
+  const handmadePath = path.join(process.cwd(), "lib", "handmade-purse.json");
+  const handmadeData = JSON.parse(fs.readFileSync(handmadePath, "utf-8"));
+  const handmadeProducts = handmadeData.map((p: Record<string, unknown>) => ({
+    id: p.id,
+    name: p.name,
+    category: p.category,
+    price: p.price,
+    image: p.image,
+    description: p.description,
+    isNew: p.isNew ?? false,
+    rating: p.rating,
+    reviewCount: p.reviewCount,
+    discountPercent: p.discountPercent,
+    source: "handmade",
+  }));
+  await Product.insertMany(handmadeProducts);
+  console.log(`Seeded ${handmadeProducts.length} handmade products`);
 
   console.log("Seed complete.");
   await mongoose.disconnect();

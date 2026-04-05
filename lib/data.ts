@@ -3,7 +3,7 @@ import { getProductsFromDB } from "@/lib/db/products";
 export interface Product {
   id: string;
   name: string;
-  category: "Maternity" | "Infants" | "Sarees" | "Accessories";
+  category: "Maternity" | "Infants" | "Sarees" | "Accessories" | "Purse";
   price: number;
   image: string;
   description: string;

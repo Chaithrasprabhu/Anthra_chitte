@@ -14,7 +14,7 @@ export interface DbProduct {
   rating?: number;
   reviewCount?: number;
   discountPercent?: number;
-  source: "fabric" | "catalog";
+  source: "fabric" | "catalog" | "handmade";
 }
 
 async function getRatingForProduct(productId: string): Promise<{ rating: number; reviewCount: number }> {
@@ -34,13 +34,15 @@ async function getRatingForProduct(productId: string): Promise<{ rating: number;
 export async function getProductsFromDB(filters?: {
   fabric?: string;
   isNew?: boolean;
-  source?: "fabric" | "catalog";
+  source?: "fabric" | "catalog" | "handmade";
+  category?: string;
 }): Promise<DbProduct[]> {
   await connectDB();
   const query: Record<string, unknown> = {};
   if (filters?.fabric) query.fabric = filters.fabric;
   if (filters?.isNew === true) query.isNew = true;
   if (filters?.source) query.source = filters.source;
+  if (filters?.category) query.category = filters.category;
 
   const products = await Product.find(query).lean();
   const result: DbProduct[] = [];

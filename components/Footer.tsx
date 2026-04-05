@@ -12,6 +12,9 @@ export function Footer() {
                         <Link href="/category/sarees-by-fabric" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                             Sarees
                         </Link>
+                        <Link href="/category/handmade-essentials" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                            Handmade
+                        </Link>
                         <Link href="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                             Our Story
                         </Link>

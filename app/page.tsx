@@ -5,7 +5,7 @@ import { Hero } from "@/components/Hero";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { JsonLd } from "@/components/JsonLd";
-import { Sparkles, Shirt, Gift } from "lucide-react";
+import { Sparkles, Shirt, Gift, ShoppingBag } from "lucide-react";
 import { absoluteUrl, defaultDescription, getSiteUrl, SITE_NAME } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -31,6 +31,7 @@ export const metadata: Metadata = {
 const categories = [
   { name: "New Arrivals", href: "/category/new-arrivals", icon: Gift, desc: "Fresh arrivals" },
   { name: "Sarees by Fabric", href: "/category/sarees-by-fabric", icon: Shirt, desc: "Cotton, Silk & more" },
+  { name: "Handmade Essentials", href: "/category/handmade-essentials", icon: ShoppingBag, desc: "Potli bags & more" },
   { name: "Blouses", href: "/category/blouses", icon: Sparkles, desc: "Designer blouses" },
 ];
 
@@ -83,7 +84,7 @@ export default function Home() {
               Find your perfect piece from our curated collections
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((cat) => (
               <Link
                 key={cat.name}

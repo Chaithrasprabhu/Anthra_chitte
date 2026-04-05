@@ -26,4 +26,8 @@ export function isFabricProduct(product: ProductWithFabric): boolean {
   return "fabric" in product && !!product.fabric;
 }
 
+export function isPurseProduct(product: ProductWithFabric): boolean {
+  return product.category === "Purse";
+}
+
 export { getProductsFromDB };

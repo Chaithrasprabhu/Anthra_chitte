@@ -9,10 +9,12 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const fabric = searchParams.get("fabric");
     const isNew = searchParams.get("isNew");
+    const category = searchParams.get("category");
 
     let query: Record<string, unknown> = {};
     if (fabric) query.fabric = fabric;
     if (isNew === "true") query.isNew = true;
+    if (category) query.category = category;
 
     const products = await Product.find(query).lean();
 

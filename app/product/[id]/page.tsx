@@ -1,7 +1,8 @@
 import { getAllProductIds } from "@/lib/data";
-import { getProductById, isFabricProduct } from "@/lib/products";
+import { getProductById, isFabricProduct, isPurseProduct } from "@/lib/products";
 import { ProductDetails } from "@/components/ProductDetails";
 import { FabricProductDetails } from "@/components/FabricProductDetails";
+import { HandmadeProductDetails } from "@/components/HandmadeProductDetails";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
@@ -106,6 +107,8 @@ export default async function ProductPage({ params }: PageProps) {
                     <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">
                         {isFabricProduct(product) ? (
                             <FabricProductDetails product={product} />
+                        ) : isPurseProduct(product) ? (
+                            <HandmadeProductDetails product={product} />
                         ) : (
                             <ProductDetails product={product} />
                         )}

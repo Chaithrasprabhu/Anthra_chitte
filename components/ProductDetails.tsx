@@ -103,7 +103,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
 
             <div className="flex items-center gap-2 text-xs text-muted-foreground bg-muted/50 p-3 rounded-lg border border-border/50">
                 <Info className="w-4 h-4 shrink-0" />
-                <span>Free shipping on orders above ₹2000. Easy returns within 7 days.</span>
+                <span>Free shipping on orders above ₹2000. Easy returns within 5 days(wrong/damaged item only).</span>
             </div>
         </div>
     );

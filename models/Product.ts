@@ -30,7 +30,7 @@ const ProductSchema = new Schema<IProduct>(
     rating: { type: Number },
     reviewCount: { type: Number },
     discountPercent: { type: Number },
-    source: { type: String, enum: ["fabric", "catalog"], required: true },
+    source: { type: String, enum: ["fabric", "catalog", "handmade"], required: true },
     createdAt: { type: Date, default: Date.now },
   },
   { timestamps: true }
