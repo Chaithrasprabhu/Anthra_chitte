@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getSiteUrl, SITE_NAME } from "@/lib/seo";
 
 const title = "New Arrivals";
-const description = `Discover fresh arrivals at ${SITE_NAME} — handcrafted sarees, linen digital prints, and traditional wear. Shop the latest drops.`;
+const description = `Discover fresh arrivals at ${SITE_NAME} — Mysore crepe sarees, handmade essentials, and traditional wear. Shop the latest drops.`;
 const path = "/category/new-arrivals";
 
 export const metadata: Metadata = {

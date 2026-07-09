@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
 import { getSiteUrl, SITE_NAME } from "@/lib/seo";
 
-const title = "Sarees by Fabric";
-const description = `Shop sarees by fabric at ${SITE_NAME} — Mysore crepe with gold zari borders. Handcrafted traditional wear with pockets & Flexifit options.`;
-const path = "/category/sarees-by-fabric";
+const title = "Online Boutique";
+const description = `Custom stitching at ${SITE_NAME} — lehenga, choli, kurta, sleeve & neckline styles, and matching mother & baby outfits stitched to your favourite design.`;
+const path = "/category/online-boutique";
 
 export const metadata: Metadata = {
   title,
   description,
+  keywords: [
+    "custom stitching online India",
+    "lehenga stitching",
+    "choli blouse custom",
+    "mother baby matching outfit",
+    "ethnic wear tailor",
+    SITE_NAME,
+  ],
   alternates: { canonical: path },
   openGraph: {
     title: `${title} | ${SITE_NAME}`,
@@ -21,6 +29,6 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export default function SareesByFabricLayout({ children }: { children: React.ReactNode }) {
+export default function OnlineBoutiqueLayout({ children }: { children: React.ReactNode }) {
   return children;
 }

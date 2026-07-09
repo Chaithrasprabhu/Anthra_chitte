@@ -1,6 +1,13 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { Product } from '@/lib/data';
+import {
+    BOUTIQUE_PRODUCT,
+    formatBoutiqueSummary,
+    type BoutiqueConfig,
+} from '@/lib/boutique-options';
+
+export type { BoutiqueConfig };
 
 export const READYMADE_ADDON = 75;
 export const POCKETS_ADDON = 40;
@@ -28,13 +35,21 @@ interface CartItem extends Product {
     quantity: number;
     size?: string;
     config?: SareeConfig;
+    boutiqueConfig?: BoutiqueConfig;
 }
+
+function cartItemKey(item: Pick<CartItem, 'id' | 'size' | 'config' | 'boutiqueConfig'>) {
+    return `${item.id}-${item.size ?? ''}-${JSON.stringify(item.config ?? {})}-${JSON.stringify(item.boutiqueConfig ?? {})}`;
+}
+
+export { cartItemKey };
 
 interface CartState {
     items: CartItem[];
     addItem: (product: Product, size?: string, config?: SareeConfig) => void;
-    removeItem: (productId: string, size?: string, config?: SareeConfig) => void;
-    updateQuantity: (productId: string, quantity: number, size?: string, config?: SareeConfig) => void;
+    addBoutiqueItem: (boutiqueConfig: BoutiqueConfig) => void;
+    removeItem: (productId: string, size?: string, config?: SareeConfig, boutiqueConfig?: BoutiqueConfig) => void;
+    updateQuantity: (productId: string, quantity: number, size?: string, config?: SareeConfig, boutiqueConfig?: BoutiqueConfig) => void;
     clearCart: () => void;
     totalItems: () => number;
     subtotalPrice: () => number;
@@ -57,14 +72,16 @@ export const useCartStore = create<CartState>()(
                     (item) =>
                         item.id === product.id &&
                         item.size === size &&
-                        JSON.stringify(item.config || {}) === JSON.stringify(config || {})
+                        JSON.stringify(item.config || {}) === JSON.stringify(config || {}) &&
+                        !item.boutiqueConfig
                 );
                 if (existingItem) {
                     set({
                         items: items.map((item) =>
                             item.id === product.id &&
                             item.size === size &&
-                            JSON.stringify(item.config || {}) === JSON.stringify(config || {})
+                            JSON.stringify(item.config || {}) === JSON.stringify(config || {}) &&
+                            !item.boutiqueConfig
                                 ? { ...item, quantity: item.quantity + 1 }
                                 : item
                         ),
@@ -73,40 +90,50 @@ export const useCartStore = create<CartState>()(
                     set({ items: [...items, { ...product, quantity: 1, size, config }] });
                 }
             },
-            removeItem: (productId, size, config) => {
-                const configStr = JSON.stringify(config || {});
-                set({
-                    items: get().items.filter(
-                        (item) =>
-                            !(
-                                item.id === productId &&
-                                item.size === size &&
-                                JSON.stringify(item.config || {}) === configStr
-                            )
-                    ),
-                });
-            },
-            updateQuantity: (productId, quantity, size, config) => {
-                const configStr = JSON.stringify(config || {});
-                if (quantity <= 0) {
+            addBoutiqueItem: (boutiqueConfig) => {
+                const items = get().items;
+                const product: Product = {
+                    ...BOUTIQUE_PRODUCT,
+                    description: formatBoutiqueSummary(boutiqueConfig),
+                };
+                const existingItem = items.find(
+                    (item) =>
+                        item.id === product.id &&
+                        JSON.stringify(item.boutiqueConfig || {}) === JSON.stringify(boutiqueConfig)
+                );
+                if (existingItem) {
                     set({
-                        items: get().items.filter(
-                            (item) =>
-                                !(
-                                    item.id === productId &&
-                                    item.size === size &&
-                                    JSON.stringify(item.config || {}) === configStr
-                                )
+                        items: items.map((item) =>
+                            item.id === product.id &&
+                            JSON.stringify(item.boutiqueConfig || {}) === JSON.stringify(boutiqueConfig)
+                                ? { ...item, quantity: item.quantity + 1 }
+                                : item
                         ),
                     });
                 } else {
                     set({
+                        items: [...items, { ...product, quantity: 1, boutiqueConfig }],
+                    });
+                }
+            },
+            removeItem: (productId, size, config, boutiqueConfig) => {
+                const key = `${productId}-${size ?? ''}-${JSON.stringify(config || {})}-${JSON.stringify(boutiqueConfig || {})}`;
+                set({
+                    items: get().items.filter(
+                        (item) => cartItemKey(item) !== key
+                    ),
+                });
+            },
+            updateQuantity: (productId, quantity, size, config, boutiqueConfig) => {
+                const key = `${productId}-${size ?? ''}-${JSON.stringify(config || {})}-${JSON.stringify(boutiqueConfig || {})}`;
+                if (quantity <= 0) {
+                    set({
+                        items: get().items.filter((item) => cartItemKey(item) !== key),
+                    });
+                } else {
+                    set({
                         items: get().items.map((item) =>
-                            item.id === productId &&
-                            item.size === size &&
-                            JSON.stringify(item.config || {}) === configStr
-                                ? { ...item, quantity }
-                                : item
+                            cartItemKey(item) === key ? { ...item, quantity } : item
                         ),
                     });
                 }

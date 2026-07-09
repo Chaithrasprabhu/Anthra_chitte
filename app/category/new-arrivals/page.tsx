@@ -10,11 +10,14 @@ import { PriceDisplay } from "@/components/PriceDisplay";
 import { StarRating } from "@/components/StarRating";
 import { Heart } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
+import { SoldOutImageOverlay } from "@/components/SoldOutImageOverlay";
+import { isProductSoldOut } from "@/lib/product-utils";
+import { cn } from "@/lib/utils";
 
 type FabricItem = {
   id: string;
   name: string;
-  fabric: string;
+  fabric?: string;
   price: number;
   image: string;
   description: string;
@@ -22,6 +25,7 @@ type FabricItem = {
   rating?: number;
   reviewCount?: number;
   discountPercent?: number;
+  mrp?: number;
 };
 
 export default function NewArrivalsPage() {
@@ -59,8 +63,7 @@ export default function NewArrivalsPage() {
             New Arrivals
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Discover our latest additions across Linen Digital Prints and Ganga Pattu
-            Cotton.
+            Discover our latest additions across Mysore crepe and handmade essentials.
           </p>
         </div>
 
@@ -74,7 +77,9 @@ export default function NewArrivalsPage() {
           </div>
         ) : products.length > 0 ? (
           <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-            {products.map((product) => (
+            {products.map((product) => {
+              const soldOut = isProductSoldOut(product);
+              return (
               <div
                 key={product.id}
                 className="group relative border rounded-lg overflow-hidden bg-card hover:shadow-lg transition-all duration-300"
@@ -83,11 +88,13 @@ export default function NewArrivalsPage() {
                   href={`/product/${product.id}`}
                   className="block aspect-[3/4] w-full overflow-hidden bg-gray-100 relative"
                 >
-                  <div className="absolute top-2 left-2 z-10 flex gap-1.5">
+                  <div className="absolute top-2 left-2 z-20 flex flex-wrap gap-1.5">
+                    {!soldOut && (
                     <span className="rounded-md bg-amber-500 px-2 py-0.5 text-xs font-semibold text-white shadow">
                       NEW
                     </span>
-                    {product.discountPercent != null && product.discountPercent > 0 && (
+                    )}
+                    {!soldOut && product.discountPercent != null && product.discountPercent > 0 && (
                       <span className="rounded-md bg-emerald-600 px-2 py-0.5 text-xs font-semibold text-white shadow">
                         {product.discountPercent}% OFF
                       </span>
@@ -95,11 +102,15 @@ export default function NewArrivalsPage() {
                   </div>
                   <Image
                     src={product.image}
-                    alt="Saree"
+                    alt={product.name}
                     fill
-                    className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    className={cn(
+                      "h-full w-full object-cover object-center transition-transform duration-500",
+                      !soldOut && "group-hover:scale-105"
+                    )}
                   />
-                  <div className="absolute top-2 right-2 z-10">
+                  <SoldOutImageOverlay soldOut={soldOut} />
+                  <div className="absolute top-2 right-2 z-20">
                     <Button
                       variant={isFavorite(product.id) ? "secondary" : "ghost"}
                       size="icon"
@@ -140,14 +151,30 @@ export default function NewArrivalsPage() {
                     {product.description}
                   </p>
                   <div className="mt-2 flex items-center justify-between gap-2">
-                    <PriceDisplay price={product.price} discountPercent={product.discountPercent} variant="default" />
-                    <Button size="sm" variant="secondary" className="font-medium" asChild>
-                      <Link href={`/product/${product.id}`}>Add to Cart</Link>
+                    <PriceDisplay
+                      price={product.price}
+                      discountPercent={product.discountPercent}
+                      mrp={product.mrp}
+                      variant="default"
+                    />
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      className="font-medium"
+                      disabled={soldOut}
+                      asChild={!soldOut}
+                    >
+                      {soldOut ? (
+                        <span>Sold Out</span>
+                      ) : (
+                        <Link href={`/product/${product.id}`}>Add to Cart</Link>
+                      )}
                     </Button>
                   </div>
                 </div>
               </div>
-            ))}
+            );
+            })}
           </div>
         ) : (
           <div className="text-center py-20 bg-muted/30 rounded-lg border border-dashed">

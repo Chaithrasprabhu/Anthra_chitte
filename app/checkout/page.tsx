@@ -8,7 +8,8 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { PriceDisplay } from "@/components/PriceDisplay";
-import { useCartStore, getSareeItemPrice, READYMADE_ADDON, POCKETS_ADDON } from "@/store/useCartStore";
+import { useCartStore, getSareeItemPrice, READYMADE_ADDON, POCKETS_ADDON, cartItemKey } from "@/store/useCartStore";
+import { isBoutiqueCartItem } from "@/lib/boutique-options";
 import { useAuthStore } from "@/store/useAuthStore";
 import { ShoppingBag, ArrowLeft } from "lucide-react";
 
@@ -209,15 +210,18 @@ export default function CheckoutPage() {
         <div className="space-y-4 mb-8">
           {items.map((item) => (
             <div
-              key={`${item.id}-${item.size ?? ""}-${JSON.stringify(item.config || {})}`}
+              key={cartItemKey(item)}
               className="flex gap-4 rounded-lg border border-border bg-card p-4"
             >
               <div className="relative w-20 h-24 shrink-0 rounded-md overflow-hidden bg-muted">
-                <Image src={item.image} alt={item.id.includes("-") ? "Saree" : item.name} fill className="object-cover" />
+                <Image src={item.image} alt={isBoutiqueCartItem(item.id) ? "Custom stitching" : item.id.includes("-") ? "Saree" : item.name} fill className="object-cover" />
               </div>
               <div className="flex-1 min-w-0">
-                <h2 className="font-medium text-foreground">{item.id.includes("-") ? "Saree" : item.name}</h2>
+                <h2 className="font-medium text-foreground">{isBoutiqueCartItem(item.id) ? item.name : item.id.includes("-") ? "Saree" : item.name}</h2>
                 <p className="text-sm text-muted-foreground">Qty: {item.quantity}</p>
+                {item.boutiqueConfig && (
+                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">{item.description}</p>
+                )}
                 {item.config && (
                   <div className="text-xs text-muted-foreground mt-1 space-y-0.5">
                     <p>Type: {item.config.sareeType}</p>

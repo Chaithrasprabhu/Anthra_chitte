@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useCartStore, getSareeItemPrice, READYMADE_ADDON, POCKETS_ADDON, PLATFORM_FEE } from "@/store/useCartStore";
+import { useCartStore, getSareeItemPrice, READYMADE_ADDON, POCKETS_ADDON, PLATFORM_FEE, cartItemKey } from "@/store/useCartStore";
+import { isBoutiqueCartItem } from "@/lib/boutique-options";
 import { useAuthStore } from "@/store/useAuthStore";
 import {
     Sheet,
@@ -67,20 +68,25 @@ export function CartSheet() {
                         <div className="flex-1 overflow-y-auto pr-4">
                             <div className="space-y-6">
                                 {items.map((item) => (
-                                    <div key={`${item.id}-${item.size || ""}-${JSON.stringify(item.config || {})}`} className="flex space-x-4">
+                                    <div key={cartItemKey(item)} className="flex space-x-4">
                                         <div className="relative w-20 h-24 rounded-md overflow-hidden bg-muted">
                                             <Image
                                                 src={item.image}
-                                                alt={item.id.includes("-") ? "Saree" : item.name}
+                                                alt={isBoutiqueCartItem(item.id) ? "Custom stitching" : item.id.includes("-") ? "Saree" : item.name}
                                                 fill
                                                 className="object-cover"
                                             />
                                         </div>
                                         <div className="flex-1 space-y-1">
                                             <h4 className="font-medium text-foreground text-sm line-clamp-2">
-                                                {item.id.includes("-") ? "Saree" : item.name}
+                                                {isBoutiqueCartItem(item.id) ? item.name : item.id.includes("-") ? "Saree" : item.name}
                                             </h4>
                                             <p className="text-sm text-muted-foreground font-serif">Category: {item.category}</p>
+                                            {item.boutiqueConfig && (
+                                                <p className="text-xs text-muted-foreground line-clamp-4">
+                                                    {item.description}
+                                                </p>
+                                            )}
                                             {item.size && (
                                                 <p className="text-xs text-muted-foreground">Size: {item.size}</p>
                                             )}
@@ -115,7 +121,7 @@ export function CartSheet() {
                                                         variant="ghost"
                                                         size="icon"
                                                         className="h-8 w-8 rounded-none"
-                                                        onClick={() => updateQuantity(item.id, item.quantity - 1, item.size, item.config)}
+                                                        onClick={() => updateQuantity(item.id, item.quantity - 1, item.size, item.config, item.boutiqueConfig)}
                                                     >
                                                         <Minus className="w-3 h-3" />
                                                     </Button>
@@ -124,7 +130,7 @@ export function CartSheet() {
                                                         variant="ghost"
                                                         size="icon"
                                                         className="h-8 w-8 rounded-none"
-                                                        onClick={() => updateQuantity(item.id, item.quantity + 1, item.size, item.config)}
+                                                        onClick={() => updateQuantity(item.id, item.quantity + 1, item.size, item.config, item.boutiqueConfig)}
                                                     >
                                                         <Plus className="w-3 h-3" />
                                                     </Button>
@@ -140,7 +146,7 @@ export function CartSheet() {
                                             variant="ghost"
                                             size="icon"
                                             className="text-muted-foreground hover:text-destructive self-start -mt-2 -mr-2"
-                                            onClick={() => removeItem(item.id, item.size, item.config)}
+                                            onClick={() => removeItem(item.id, item.size, item.config, item.boutiqueConfig)}
                                         >
                                             <X className="w-4 h-4" />
                                         </Button>

@@ -1,5 +1,6 @@
 import { getAllProductIds } from "@/lib/data";
 import { getProductById, isFabricProduct, isPurseProduct } from "@/lib/products";
+import { isProductSoldOut } from "@/lib/product-utils";
 import { ProductDetails } from "@/components/ProductDetails";
 import { FabricProductDetails } from "@/components/FabricProductDetails";
 import { HandmadeProductDetails } from "@/components/HandmadeProductDetails";
@@ -7,6 +8,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 import { ProductImageCarousel } from "@/components/ProductImageCarousel";
+import { SoldOutImageOverlay } from "@/components/SoldOutImageOverlay";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import {
@@ -89,6 +91,7 @@ export default async function ProductPage({ params }: PageProps) {
     const imageUrlsForLd = gallery.map((src) => absoluteImageUrl(src));
     const displayName = isFabricProduct(product) ? product.name || "Saree" : product.name;
     const pageUrl = `${baseUrl.replace(/\/$/, "")}/product/${id}`;
+    const soldOut = isProductSoldOut(product);
     const priceValidUntil = new Date();
     priceValidUntil.setFullYear(priceValidUntil.getFullYear() + 1);
 
@@ -96,7 +99,9 @@ export default async function ProductPage({ params }: PageProps) {
         "@type": "Offer",
         price: product.price,
         priceCurrency: "INR",
-        availability: "https://schema.org/InStock",
+        availability: soldOut
+            ? "https://schema.org/OutOfStock"
+            : "https://schema.org/InStock",
         url: pageUrl,
         priceValidUntil: priceValidUntil.toISOString().slice(0, 10),
     };
@@ -138,8 +143,13 @@ export default async function ProductPage({ params }: PageProps) {
             <main className="flex-1 container mx-auto px-4 py-10 sm:px-6 lg:px-8" role="main">
                 <div className="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16">
                     {/* Product image(s) — carousel when multiple gallery images */}
+                    <div className="relative">
                     {gallery.length > 1 ? (
-                        <ProductImageCarousel images={gallery} alt={displayName} />
+                        <ProductImageCarousel
+                            images={gallery}
+                            alt={displayName}
+                            soldOut={soldOut}
+                        />
                     ) : (
                         <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg bg-gray-100 lg:aspect-[3/4]">
                             <Image
@@ -150,8 +160,10 @@ export default async function ProductPage({ params }: PageProps) {
                                 priority
                                 sizes="(max-width: 1024px) 100vw, 50vw"
                             />
+                            <SoldOutImageOverlay soldOut={soldOut} size="lg" />
                         </div>
                     )}
+                    </div>
 
                     {/* Product Info */}
                     <div className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0">

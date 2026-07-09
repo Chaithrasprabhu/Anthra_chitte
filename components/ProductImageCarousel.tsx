@@ -4,14 +4,21 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { SoldOutImageOverlay } from "@/components/SoldOutImageOverlay";
 
 interface ProductImageCarouselProps {
   images: string[];
   alt: string;
   className?: string;
+  soldOut?: boolean;
 }
 
-export function ProductImageCarousel({ images, alt, className }: ProductImageCarouselProps) {
+export function ProductImageCarousel({
+  images,
+  alt,
+  className,
+  soldOut,
+}: ProductImageCarouselProps) {
   const [index, setIndex] = useState(0);
   const n = images.length;
   if (n === 0) return null;
@@ -44,6 +51,8 @@ export function ProductImageCarousel({ images, alt, className }: ProductImageCar
           />
         </div>
       ))}
+
+      <SoldOutImageOverlay soldOut={soldOut} size="lg" />
 
       {n > 1 && (
         <>

@@ -19,8 +19,7 @@ export const metadata: Metadata = {
   keywords: [
     'sarees online India',
     'handcrafted sarees',
-    'linen digital print saree',
-    'Ganga Pattu saree',
+    'Mysore crepe saree',
     'traditional wear',
     'maternity wear',
     'Flexifit',

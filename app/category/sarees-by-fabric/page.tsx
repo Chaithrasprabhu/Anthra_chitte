@@ -11,11 +11,11 @@ import { PriceDisplay } from "@/components/PriceDisplay";
 import { StarRating } from "@/components/StarRating";
 import { Heart } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
+import { SoldOutImageOverlay } from "@/components/SoldOutImageOverlay";
+import { isProductSoldOut } from "@/lib/product-utils";
 
 const categories = [
-  { id: "dailywear", label: "Linen Digital Prints" },
   { id: "mysore crepe", label: "Mysore crape" },
-  { id: "ganga pattu", label: "Ganga Pattu" },
 ];
 
 type FabricItem = {
@@ -40,7 +40,7 @@ function discountOffPercent(p: FabricItem): number | undefined {
 }
 
 export default function SareesByFabricPage() {
-  const [selectedFabric, setSelectedFabric] = useState("dailywear");
+  const [selectedFabric, setSelectedFabric] = useState("mysore crepe");
   const [products, setProducts] = useState<FabricItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -81,7 +81,7 @@ export default function SareesByFabricPage() {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
           {categories.map((category) => (
             <Button
               key={category.id}
@@ -97,6 +97,12 @@ export default function SareesByFabricPage() {
           ))}
         </div>
 
+        {selectedFabric === "mysore crepe" && (
+          <p className="mb-8 text-center text-sm font-medium text-muted-foreground">
+            All Mysore crape sarees are currently sold out.
+          </p>
+        )}
+
         {loading ? (
           <div className="text-center py-20">
             <p className="text-muted-foreground">Loading products...</p>
@@ -109,6 +115,7 @@ export default function SareesByFabricPage() {
           <div className="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
             {filteredSarees.map((product) => {
               const off = discountOffPercent(product);
+              const soldOut = isProductSoldOut(product);
               return (
               <div
                 key={product.id}
@@ -118,13 +125,13 @@ export default function SareesByFabricPage() {
                   href={`/product/${product.id}`}
                   className="block aspect-[3/4] w-full overflow-hidden bg-gray-100 relative"
                 >
-                  <div className="absolute top-2 left-2 z-10 flex gap-1.5">
-                    {product.isNew && (
+                  <div className="absolute top-2 left-2 z-20 flex flex-wrap gap-1.5">
+                    {product.isNew && !soldOut && (
                       <span className="rounded-md bg-amber-500 px-2 py-0.5 text-xs font-semibold text-white shadow">
                         NEW
                       </span>
                     )}
-                    {off != null && off > 0 && (
+                    {!soldOut && off != null && off > 0 && (
                       <span className="rounded-md bg-emerald-600 px-2 py-0.5 text-xs font-semibold text-white shadow">
                         {off}% OFF
                       </span>
@@ -134,9 +141,13 @@ export default function SareesByFabricPage() {
                     src={product.image}
                     alt={product.name}
                     fill
-                    className="h-full w-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                    className={cn(
+                      "h-full w-full object-cover object-center transition-transform duration-500",
+                      !soldOut && "group-hover:scale-105"
+                    )}
                   />
-                  <div className="absolute top-2 right-2 z-10">
+                  <SoldOutImageOverlay soldOut={soldOut} />
+                  <div className="absolute top-2 right-2 z-20">
                     <Button
                       variant={isFavorite(product.id) ? "secondary" : "ghost"}
                       size="icon"
@@ -181,8 +192,18 @@ export default function SareesByFabricPage() {
                       mrp={product.mrp}
                       variant="default"
                     />
-                    <Button size="sm" variant="secondary" className="font-medium" asChild>
-                      <Link href={`/product/${product.id}`}>Add to Cart</Link>
+                    <Button
+                      size="sm"
+                      variant="secondary"
+                      className="font-medium"
+                      disabled={soldOut}
+                      asChild={!soldOut}
+                    >
+                      {soldOut ? (
+                        <span>Sold Out</span>
+                      ) : (
+                        <Link href={`/product/${product.id}`}>Add to Cart</Link>
+                      )}
                     </Button>
                   </div>
                 </div>

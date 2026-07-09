@@ -75,7 +75,7 @@ export default function HandmadeEssentialsPage() {
             </div>
           ) : (
             <div className="relative">
-              {/* Mobile: horizontal snap carousel — same card style as Linen Digital Prints */}
+              {/* Mobile: horizontal snap carousel */}
               <button
                 type="button"
                 onClick={() => scrollBy(-1)}

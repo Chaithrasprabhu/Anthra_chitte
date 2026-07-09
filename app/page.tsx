@@ -5,7 +5,7 @@ import { Hero } from "@/components/Hero";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { JsonLd } from "@/components/JsonLd";
-import { Sparkles, Shirt, Gift, ShoppingBag } from "lucide-react";
+import { Sparkles, Shirt, Gift, ShoppingBag, Scissors } from "lucide-react";
 import { absoluteUrl, defaultDescription, extendedSiteKeywords, getSiteUrl, SITE_NAME } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -38,7 +38,8 @@ export const metadata: Metadata = {
 
 const categories = [
   { name: "New Arrivals", href: "/category/new-arrivals", icon: Gift, desc: "Fresh arrivals" },
-  { name: "Sarees by Fabric", href: "/category/sarees-by-fabric", icon: Shirt, desc: "Cotton, Silk & more" },
+  { name: "Sarees by Fabric", href: "/category/sarees-by-fabric", icon: Shirt, desc: "Mysore crepe & more" },
+  { name: "Online Boutique", href: "/category/online-boutique", icon: Scissors, desc: "Custom stitching" },
   { name: "Handmade Essentials", href: "/category/handmade-essentials", icon: ShoppingBag, desc: "Potli bags & more" },
   { name: "Blouses", href: "/category/blouses", icon: Sparkles, desc: "Designer blouses" },
 ];

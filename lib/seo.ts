@@ -12,7 +12,7 @@ export function absoluteUrl(path: string): string {
 export const SITE_NAME = "Anthra Chitte";
 
 export const defaultDescription =
-  "Elegant, warm, traditional yet clean fashion. Shop handcrafted sarees, linen digital prints, Ganga Pattu, Flexifit dresses, maternity wear, and handmade potli bags. Heartcrafted in India.";
+  "Elegant, warm, traditional yet clean fashion. Shop handcrafted Mysore crepe sarees, Flexifit dresses, maternity wear, and handmade potli bags. Heartcrafted in India.";
 
 /** Extra keywords merged into root layout metadata (search + discovery). */
 export const extendedSiteKeywords = [

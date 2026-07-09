@@ -6,16 +6,17 @@ import { PriceDisplay } from "@/components/PriceDisplay";
 import { ProductRatingBlock } from "@/components/ProductRatingBlock";
 import { ShoppingCart, Heart, Info } from "lucide-react";
 import { useCartStore, READYMADE_ADDON, POCKETS_ADDON } from "@/store/useCartStore";
+import { isProductSoldOut } from "@/lib/product-utils";
 import type { ProductWithFabric } from "@/lib/products";
 import type { Product } from "@/lib/data";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 
 interface FabricProductDetailsProps {
   product: ProductWithFabric;
 }
 
 function fabricDisplayName(fabric: string): string {
-  if (fabric === "dailywear") return "Linen Digital Prints";
   if (fabric === "mysore crepe") return "Mysore crape";
   return fabric;
 }
@@ -31,6 +32,7 @@ const skirtLengths = [
 
 export function FabricProductDetails({ product }: FabricProductDetailsProps) {
   const { addItem, addFavorite, removeFavorite, isFavorite } = useCartStore();
+  const soldOut = isProductSoldOut(product);
   const [sareeType, setSareeType] = useState<"normal" | "readymade">("normal");
   const [size, setSize] = useState<string>("");
   const [skirtLength, setSkirtLength] = useState<"free" | "42" | "40" | "38" | "36" | "">("");
@@ -40,6 +42,7 @@ export function FabricProductDetails({ product }: FabricProductDetailsProps) {
   const [palluWidth, setPalluWidth] = useState<string>("");
 
   const handleConfirm = () => {
+    if (soldOut) return;
     if (sareeType === "readymade") {
       if (!size || !skirtLength || !pockets || !palluType) return;
       if (palluType === "pleated" && (!palluLength || !palluWidth)) return;
@@ -75,13 +78,14 @@ export function FabricProductDetails({ product }: FabricProductDetailsProps) {
   };
 
   const canConfirm =
-    sareeType === "normal" ||
+    !soldOut &&
+    (sareeType === "normal" ||
     (sareeType === "readymade" &&
       size &&
       skirtLength &&
       pockets &&
       palluType &&
-      (palluType !== "pleated" || (palluLength && palluWidth)));
+      (palluType !== "pleated" || (palluLength && palluWidth))));
 
   const handleWishlist = () => {
     const item = {
@@ -138,6 +142,11 @@ export function FabricProductDetails({ product }: FabricProductDetailsProps) {
 
   return (
     <div className="flex flex-col space-y-6">
+      {soldOut && (
+        <div className="rounded-lg border border-neutral-300 bg-neutral-100 px-4 py-3 text-sm font-medium text-neutral-800 dark:border-neutral-600 dark:bg-neutral-900/50 dark:text-neutral-200">
+          This Mysore crape saree is currently sold out. Check back soon or save it to your wishlist.
+        </div>
+      )}
       <div className="space-y-2">
         <h1 className="text-3xl font-bold font-serif text-primary">
           {product.fabric ? `${fabricDisplayName(product.fabric)} Saree` : "Saree"}
@@ -161,15 +170,14 @@ export function FabricProductDetails({ product }: FabricProductDetailsProps) {
             </span>
           )}
         </div>
-        {product.fabric &&
-          product.fabric !== "dailywear" &&
-          product.fabric !== "mysore crepe" && (
+        {product.fabric && product.fabric !== "mysore crepe" && (
           <p className="text-sm text-muted-foreground">
             Fabric: {product.fabric}
           </p>
         )}
       </div>
 
+      <div className={cn("space-y-6", soldOut && "opacity-60 pointer-events-none select-none")}>
       <div className="space-y-6 border-t border-border pt-6">
         <h3 className="text-sm font-medium text-foreground">Saree Type</h3>
         <div className="flex flex-wrap gap-2">
@@ -283,6 +291,8 @@ export function FabricProductDetails({ product }: FabricProductDetailsProps) {
         </div>
       )}
 
+      </div>
+
       <div className="flex gap-3 pt-2">
         <Button
           size="lg"
@@ -291,7 +301,7 @@ export function FabricProductDetails({ product }: FabricProductDetailsProps) {
           disabled={!canConfirm}
         >
           <ShoppingCart className="w-5 h-5" />
-          Add to Cart
+          {soldOut ? "Sold Out" : "Add to Cart"}
         </Button>
         <Button
           variant="outline"

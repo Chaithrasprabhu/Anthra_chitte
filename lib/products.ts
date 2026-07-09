@@ -32,4 +32,6 @@ export function isPurseProduct(product: ProductWithFabric): boolean {
   return product.category === "Purse";
 }
 
+export { isProductSoldOut } from "@/lib/product-utils";
+
 export { getProductsFromDB };
